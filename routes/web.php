@@ -7,6 +7,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//blog
+Route::group(['prefix' => 'blog' , 'as' => 'blog'], function ()
+{
+    Route::get('/', function ()
+{
+    return view('layouts.blog.main');
+});
+
+Route::get('/post', function ()
+{
+    
+});
+});
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
