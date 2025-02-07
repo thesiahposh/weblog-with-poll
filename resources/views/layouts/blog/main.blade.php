@@ -3,55 +3,20 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="" content="">
     <title>دمو وبلاگ</title>
+    <link rel="stylesheet" href="{{url('resources/css').'/style.css'}}" type="text/css" />
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
   </head>
   <body>
   <div class="container">
-  <div class="row">
-    <div class="col">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">دمو وبلاگ</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">خانه</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">جدیدترین آموزش ها</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">جدیدترین مقالات</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">پربحث ترین ها</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">مرور مطالب</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">درباره</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">اطلاعات تماس</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="جستجوی مطالب" aria-label="Search">
-        <button class="me-2 btn btn-outline-primary" type="submit">جستجو</button>
-      </form>
-    </div>
-  </div>
-</nav>
-    </div>
-  </div>
-  <div class="row">
-    {{--mega menu--}}
-</div>
+    {{--header--}}
+    @include('layouts.blog.header')
+    {{--body--}}
+    @include('layouts.blog.body')
+    {{--footer--}}
+    @include('layouts.blog.footer')
   </div>
   </body>
 </html>
