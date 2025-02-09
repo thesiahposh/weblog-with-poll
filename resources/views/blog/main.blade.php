@@ -1,57 +1,15 @@
-<!doctype html>
-<html lang="fa" dir="rtl">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>دمو وبلاگ</title>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-  </head>
-  <body>
-  <div class="container">
-  <div class="row">
-    <div class="col">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">دمو وبلاگ</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">خانه</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">جدیدترین آموزش ها</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">جدیدترین مقالات</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">پربحث ترین ها</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">مرور مطالب</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">درباره</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">اطلاعات تماس</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="جستجوی مطالب" aria-label="Search">
-        <button class="me-2 btn btn-outline-primary" type="submit">جستجو</button>
-      </form>
-    </div>
-  </div>
-</nav>
-    </div>
-  </div>
-  <div class="row">
-    {{--mega menu--}}
-</div>
-  </div>
-  </body>
-</html>
+@extends('layouts.blog.main')
+
+@section('title')
+وبلاگ - صفحه اصلی
+@endsection
+
+@section('content')
+        @foreach($posts as $post)
+        <article class="blog-post">
+            <h2 class="blog-post-title">{{$post->title}}</h2>
+            <p class="blog-post-meta">ارسال شده در تاریخ <a>{{$post->created_at}}</a> توسط <a href="#">{{$post->user_id}}</a></p>
+            <p>{{$post->text}}</p>
+        </article>
+        @endforeach
+@endsection

@@ -9,6 +9,10 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $table = 'posts';
+    public $timestamps = true;
+    protected $fillable = ['title','text','user_id'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

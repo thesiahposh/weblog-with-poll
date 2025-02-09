@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,15 +11,7 @@ Route::get('/', function () {
 //blog
 Route::group(['prefix' => 'blog' , 'as' => 'blog'], function ()
 {
-    Route::get('/', function ()
-{
-    return view('layouts.blog.main');
-});
-
-Route::get('/post', function ()
-{
-    
-});
+    Route::resource('/', PostController::class);
 });
 
 

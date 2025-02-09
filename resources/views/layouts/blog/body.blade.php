@@ -40,16 +40,7 @@
 
   <div class="row border-top">
     <div class="col-md-8">
-        <article class="blog-post">
-            <h2 class="blog-post-title">عنوان پست</h2>
-            <p class="blog-post-meta">نوشته شده در تاریخ توسط<a href="#"> ادمین </a></p>
-            <p>متن پست....</p>
-        </article>
-        <article class="blog-post">
-            <h2 class="blog-post-title">عنوان پست</h2>
-            <p class="blog-post-meta">نوشته شده در تاریخ توسط<a href="#"> ادمین </a></p>
-            <p>متن پست....</p>
-        </article>
+        @yield('content')
         <nav class="blog-pagination" aria-label="Pagination">
             <a class="btn btn-outline-primary" href="#">صفحه قبلی</a>
             <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">آخرین صفحه</a>
