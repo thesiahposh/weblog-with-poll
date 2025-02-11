@@ -9,9 +9,9 @@ Route::get('/', function () {
 });
 
 //blog
-Route::group(['prefix' => 'blog' , 'as' => 'blog'], function ()
+Route::group(['as' => 'blog.'], function ()
 {
-    Route::resource('/', PostController::class);
+    Route::resource('blog', PostController::class);
 });
 
 

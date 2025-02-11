@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Auth;
+
 
 class PostController extends Controller
 {
@@ -21,7 +23,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create');
     }
 
     /**
@@ -29,7 +31,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Post::create([
+            'title' => $request->title,
+            'text' => $request->text,
+            'user_id' => Auth::user()->id,
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -37,7 +44,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post=Post::find($id);
+        return view('blog.show',compact('post'));
     }
 
     /**
@@ -45,7 +53,8 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post=Post::find($id);
+        return view('blog.edit',compact('post'));
     }
 
     /**
@@ -53,7 +62,16 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $post=Post::find($id);
+        if($post)
+        {
+            $post->update([
+                'title'=>$request->title,
+                'text'=>$request->text,
+                'updated_at'=>\Carbon\Carbon::now(),
+            ]);
+        }
+        return redirect('/blog');
     }
 
     /**
@@ -61,6 +79,8 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post=Post::find($id);
+        $post->delete();
+        return redirect('/blog');
     }
 }
