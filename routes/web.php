@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,7 +12,8 @@ Route::get('/', function () {
 //blog
 Route::group(['as' => 'blog.'], function ()
 {
-    Route::resource('blog', PostController::class);
+    Route::resource('blog', PostController::class)->whereNumber('blog');
+    Route::resource('blog/comments', CommentController::class);
 });
 
 
