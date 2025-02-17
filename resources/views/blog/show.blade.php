@@ -37,12 +37,12 @@
                 
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
-                    @auth
+                    @if(Auth::check() && Auth::user()->role->role =='admin')
                   <p class="small mb-0" style="color: #aaa;">
                     <a href="{{url('/blog/comments/'. $comment->id . '/edit')}}" class="link-grey">ویرایش</a> •
                     <a href="#" class="link-grey">حذف</a>
                   </p>
-                  @endauth
+                  @endif
                   <div class="d-flex flex-row">
                     <i class="fas fa-star text-warning me-2"></i>
                     <i class="far fa-check-circle" style="color: #aaa;"></i>

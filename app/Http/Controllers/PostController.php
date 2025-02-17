@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Auth;
+use Illuminate\Routing\Controller as BaseController;
 
 
-class PostController extends Controller
+class PostController extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->middleware('rolecheck')->only(['create','store','edit','update','destroy']);
+    }
     /**
      * Display a listing of the resource.
      */
