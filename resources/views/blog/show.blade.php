@@ -28,7 +28,7 @@
                   <h6 class="text-primary fw-bold mb-0 me-2 mt-2">
                     {{$comment->user->name}}
                   </h6>
-                  <p class="mb-0">{{$comment->created_at}}</p>
+                  <p class="mb-0">{{jDate($comment->created_at)->ago()}}</p>
                 </div>
                 <div class="d-flex justify-content-between align-items-start" style="flex-flow: column wrap;">
                     <div class="text-break">
