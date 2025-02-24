@@ -9,6 +9,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//admin
+Route::view('admin','layouts.admin.main');
+
 //blog
 Route::group(['as' => 'blog.'], function ()
 {
