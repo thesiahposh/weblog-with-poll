@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 //admin
-Route::view('admin','layouts.admin.main');
+//Route::view('admin','layouts.admin.main');
 
 //blog
 Route::group(['as' => 'blog.'], function ()

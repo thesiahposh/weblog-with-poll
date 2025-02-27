@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Role::class);
     }
+
+    public function polls()
+    {
+        return $this->hasMany(Poll::class);
+    }
 }
