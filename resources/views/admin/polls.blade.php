@@ -27,9 +27,23 @@
                                         <tr>
                                             <td>{{$loop->index+1}}</td>
                                             <td>{{$poll->title}}</td>
-                                            <td>{{$poll->published}}</td>
-                                            <td>{{jDate($poll->expired_at)}}</td>
-                                            <td></td>
+                                            <td class="text-center">
+                                                @if($poll->published)
+                                                    <i class="fas fa-check text-success"></i>
+                                                @else
+                                                    <i class="fas fa-times-circle text-danger"></i>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">{{jDate($poll->expired_at)->format('Y-m-d')}}</td>
+                                            <td class="text-center">
+                                                <a href="#"><span class="fas fa-pencil-ruler text-primary"></span></a>
+                                                &nbsp;|&nbsp;
+                                                <a href="#"><span class="fas fa-trash text-danger"></span></a>
+                                                <form method="POST" action="" id="delete-{{$poll->id}}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
