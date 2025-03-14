@@ -9,7 +9,7 @@
             <div class="col-8">
                     <div class="card">
                         <div class="card-header background-color-white">
-                            مدیریت نظرسنجی ها
+                            لیست نظرسنجی ها
                         </div>
                         <div class="card-body col-12">
                         <table class="table table-white table-striped table-hover align-middle text-center">
@@ -52,5 +52,20 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header background-color-white">
+                            مدیریت نظرسنجی ها
+                        </div>
+                        <div class="card-body col-12">
+                                تعداد کل نظرسنجی های شما: {{$polls->count()}}
+                        </div>
+                        <div class="card-body col-12">
+                                <a href="{{route('admin.polls.create')}}"><span class="fas fa-plus-circle text-success"> افزودن نظرسنجی</span></a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 @endsection

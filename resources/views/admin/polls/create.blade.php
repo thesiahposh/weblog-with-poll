@@ -39,16 +39,45 @@
 
 
 <div class="row">
-<div class="col-8 mx-auto d-flex">
-            <div class="col-2">
+    <div class="col-8 mx-auto">
+            <div class="d-block">
                 <label class="col-form-label ms-4">پاسخ ها :</label>
             </div>
-            <div class="col">
-                <input type="text" class="form-control form-control-sm" id="" name="" placeholder="">
-            </div>           
     </div>
 </div>
 
+<div class="row col-8 mx-auto">
+    <div class="col-auto">
+         <label for="" class="col-form-label">پاسخ اول:</label>
+    </div>
+    <div class="col">
+         <input type="text" class="form-control form-control-sm" id="" name="a[][answers]" placeholder="">
+     </div>
+</div>
+
+<div class="row col-8 mx-auto">
+    <div class="col-auto">
+         <label for="" class="col-form-label">پاسخ دوم:</label>
+    </div>
+    <div class="col">
+         <input type="text" class="form-control form-control-sm" id="" name="a[][answers]" placeholder="">
+     </div>
+</div>
+
+<div class="row col-8 mx-auto">
+    <div class="col-auto" onclick="addAnswers()">
+         اضافه کردن گزینه جدید <span class="fas fa-plus-circle text-primary"></span>
+    </div>
+</div>
 
 </form>
+@endsection
+
+@section('script')
+<script>
+function addAnswers()
+{
+    
+}
+</script>
 @endsection
