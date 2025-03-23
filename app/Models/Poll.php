@@ -14,4 +14,9 @@ class Poll extends Model
     expired_at -> expiration date of poll.
     */
     protected $fillable=['user_id', 'type_id', 'title', 'published','expired_at'];
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

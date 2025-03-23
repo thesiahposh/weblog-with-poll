@@ -6,4 +6,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/','admin.main');
 Route::view('polls/create','admin.polls.create')->name('polls.create');
+Route::post('polls/create',[PollController::class,'store'])->name('polls.store');
 Route::get('polls',[PollController::class,'index']);

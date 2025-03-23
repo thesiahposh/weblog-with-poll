@@ -10,6 +10,7 @@
     <!--link rel="stylesheet" href="css/bootstrap.min.css"-->
     <link rel="stylesheet" href="{{asset('/resources/css/admin/style.css')}}">
     <link rel="stylesheet" href="{{asset('/resources/css/admin/box-statistics.css')}}">
+    @yield('includes')
 </head>
 <body dir="rtl">
 <div class="wrapper d-flex align-items-stretch">

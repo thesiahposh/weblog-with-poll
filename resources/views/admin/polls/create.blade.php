@@ -4,6 +4,13 @@
 افزودن نظرسنجی
 @endsection
 
+@section('includes')
+<link type="text/css" rel="stylesheet" href="{{asset('/resources/css/persianDatepicker-default.css')}}"></script>
+<script type="text/javascript" src="{{asset('/resources/js/jquery.js')}}"></script>
+<script type="text/javascript" src="{{asset('/resources/js/persianDatepicker.js')}}"></script>
+
+@endsection
+
 @section('content1')
 <form method="POST" action="{{route('admin.polls.store')}}">
     @csrf
@@ -13,26 +20,35 @@
                 <label for="title" class="col-form-label ms-4">عنوان نظرسنجی :</label>
             </div>
             <div class="col">
-                <input type="text" class="form-control form-control-sm" id="title" name="title" placeholder="عنوان نظرسنجی">
-            </div>           
+                <input type="text" class="form-control form-control-sm @error('title') is-invalid @enderror" id="title" name="title" placeholder="عنوان نظرسنجی" value="{{old('title')}}">
+            </div>
+
     </div>
+            @if($errors->has('title'))
+                <div class="row">
+                     <div class="col-8 mx-auto mt-4 p-2 alert alert-danger">
+                     @foreach($errors->get('title') as $error)
+                         {{$error}}
+                     @endforeach
+                     </div>
+                </div>
+            @endif                   
     <div class="col-8 mx-auto d-flex mt-2">
             <div class="col-2">
-                <label for="type" class="col-form-label ms-4">نوع نظرسنجی :</label>
+                <label for="type_id" class="col-form-label ms-4">نوع نظرسنجی :</label>
             </div>
             <div class="col ms-5">
-            <select class="form-select form-select-sm mb-3" name="type" id="type">
-                 <option selected disabled>یک گزینه را انتخاب کنید...</option>
-                 <option value="1">یک جوابی</option>
-                 <option value="2">چند جوابی</option>
+            <select class="form-select form-select-sm mb-3 @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
+                 <option @if(!old("type_id"))selected @endif disabled>یک گزینه را انتخاب کنید...</option>
+                 <option @if(old("type_id")==1)selected @endif value="1">یک جوابی</option>
+                 <option @if(old("type_id")==2)selected @endif value="2">چند جوابی</option>
            </select>
             </div>
             <div class="col-auto">
                 <label for="expired_at" class="col-form-label ms-4">تاریخ انقضا :</label>
             </div>
             <div class="col me-5">
-            <input type="date" class="form-select form-select-sm mb-3" id="expired_at" name="expired_at">
-             </select>
+            <input type="text" class="form-select form-select-sm mb-3 @error('expired_at') is-invalid @enderror" id="pdatepicker" name="expired_at" placeholder="انتخاب تاریخ" value="{{old('expired_at')}}">     
             </div>  
     </div>
 </div>
@@ -53,7 +69,7 @@
              <label for="" class="col-form-label">پاسخ اول:</label>
       </div>
         <div class="col-11">
-             <input type="text" class="form-control form-control-sm" id="" name="a[][answers]" placeholder="">
+             <input type="text" class="form-control form-control-sm @error('a.0.answers') is-invalid @enderror" id="a1" name="a[][answers]" placeholder="" value="{{old('a.0.answers')}}">
       </div>
     </div>
 </div>
@@ -64,7 +80,7 @@
              <label for="" class="col-form-label">پاسخ دوم:</label>
       </div>
         <div class="col-11">
-             <input type="text" class="form-control form-control-sm" id="" name="a[][answers]" placeholder="">
+             <input type="text" class="form-control form-control-sm @error('a.1.answers') is-invalid @enderror" id="a2" name="a[][answers]" placeholder="" value="{{old('a.1.answers')}}">
       </div>
     </div>
 </div>
@@ -82,7 +98,7 @@
       <button type="submit" class="btn btn-success">ارسال</button>
     </div> 
     <div class="col-auto">
-    <button type="reset" class="btn btn-danger" onclick="resetform()">پاک کردن</button>
+    <button class="btn btn-danger" onclick="event.preventDefault();resetform();">پاک کردن</button>
     </div> 
 </div>
 
@@ -91,6 +107,11 @@
 
 @section('script')
 <script>
+jQuery( document ).ready(function( $ )
+{
+    $("#pdatepicker").persianDatepicker();
+});
+
 function addAnswers()
 {
     let count = document.getElementById('answers').childNodes.length+2;
@@ -119,6 +140,10 @@ function resetform()
             for(let i=0; i<count; i++)
             document.getElementById('answers').removeChild(document.getElementById('answers').childNodes[count-i-1])
         }
+    document.getElementById('title').value="";
+    document.getElementById('a1').value="";
+    document.getElementById('a2').value="";
+    document.getElementById('pdatepicker').value="";
 }
 </script>
 @endsection
