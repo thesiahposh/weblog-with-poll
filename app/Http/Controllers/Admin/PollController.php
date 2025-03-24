@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Poll;
 
 class PollController extends Controller
 {
@@ -46,5 +47,17 @@ class PollController extends Controller
        }
        
        return redirect('/admin/polls');
+    }
+
+    public function destroy(Poll $poll)
+    {
+
+        if($poll->questions && $poll->questions->count())
+        {
+            $poll->questions()->delete();
+        }
+        $poll->delete();
+        return back();
+        
     }
 }

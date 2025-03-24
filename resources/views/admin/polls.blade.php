@@ -4,6 +4,10 @@
 مدیریت نظرسنجی ها
 @endsection
 
+@section('includes')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@endsection
+
 @section('content1')
 <div class="row">
             <div class="col-8">
@@ -38,8 +42,8 @@
                                             <td class="text-center">
                                                 <a href="#"><span class="fas fa-pencil-ruler text-primary"></span></a>
                                                 &nbsp;|&nbsp;
-                                                <a href="#"><span class="fas fa-trash text-danger"></span></a>
-                                                <form method="POST" action="" id="delete-{{$poll->id}}">
+                                                <a href="#" onclick="event.preventDefault(); deletePoll('{{$poll->id}}');"><span class="fas fa-trash text-danger"></span></a>
+                                                <form method="POST" action="{{route('admin.polls.destroy', $poll->id)}}" id="delete-{{$poll->id}}">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -69,3 +73,26 @@
 
             </div>
 @endsection
+
+@section('script')
+<script>
+    function deletePoll(id)
+    {
+        Swal.fire({
+        title: "آیا مطمئن هستید؟",
+        text: "آیا از حذف این نظرسنجی مطمئن هستید؟",
+        icon: "warning",
+        cancelButtonText: "خیر",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "بله!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+            document.getElementById('delete-'+id).submit();
+        }
+    });
+    }
+</script>
+@endsection
+
