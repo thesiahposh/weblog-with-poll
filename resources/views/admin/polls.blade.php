@@ -40,7 +40,7 @@
                                             </td>
                                             <td class="text-center">{{jDate($poll->expired_at)->format('Y-m-d')}}</td>
                                             <td class="text-center">
-                                                <a href="#"><span class="fas fa-pencil-ruler text-primary"></span></a>
+                                                <a href="{{route('admin.polls.edit', $poll->id)}}"><span class="fas fa-pencil-ruler text-primary"></span></a>
                                                 &nbsp;|&nbsp;
                                                 <a href="#" onclick="event.preventDefault(); deletePoll('{{$poll->id}}');"><span class="fas fa-trash text-danger"></span></a>
                                                 <form method="POST" action="{{route('admin.polls.destroy', $poll->id)}}" id="delete-{{$poll->id}}">

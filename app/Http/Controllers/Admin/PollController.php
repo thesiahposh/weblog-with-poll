@@ -60,4 +60,56 @@ class PollController extends Controller
         return back();
         
     }
+
+    public function edit(Poll $poll)
+    {
+        $expired_at_array = explode(' ', $poll->expired_at);
+        $expired_at_date_array = explode('-', $expired_at_array[0]);
+        $expired_at = implode('/', \Morilog\Jalali\CalendarUtils::toJalali(
+            $expired_at_date_array[0],
+            $expired_at_date_array[1],
+            $expired_at_date_array[2]));
+
+        return view('admin.polls.edit',compact('poll','expired_at'));
+    }
+
+    public function update(Request $request, Poll $poll)
+    {
+        $request->validate([
+            'title' => ['required','max:150','min:10'],
+            'type_id' => ['required','exists:types,id'],
+            'expired_at' => ['required'],
+            'a.0.answers' => ['required'],
+            'a.1.answers' => ['required'],       
+           ]);
+    
+           $j_expired_at = explode('/',$request->expired_at);
+           $year=$j_expired_at[0];
+           $month=$j_expired_at[1];
+           $day=$j_expired_at[2];
+    
+           $expired_at = implode('-', \Morilog\Jalali\CalendarUtils::toGregorian($year, $month, $day));
+    
+           $poll->update([
+            'title' => $request->title,
+            'type_id' => $request->type_id,
+            'expired_at' => $expired_at,
+            'published' => false,
+           ]);
+
+           $poll->questions()->delete();
+    
+           foreach($request->a as $q)
+           {
+            if($q['answers'])
+            {
+                $poll->questions()->create([
+                    'user_id' => $request->user()->id,
+                    'q_body' => $q['answers'],
+                ]);
+            }
+           }
+
+           return redirect('/admin/polls'); 
+    }
 }
