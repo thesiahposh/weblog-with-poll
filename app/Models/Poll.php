@@ -19,4 +19,9 @@ class Poll extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    public function shortLink()
+    {
+        return $this->hasOne(ShortLink::class);
+    }
 }

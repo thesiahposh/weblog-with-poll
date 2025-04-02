@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Poll;
@@ -111,5 +112,26 @@ class PollController extends Controller
            }
 
            return redirect('/admin/polls'); 
+    }
+
+    public function publish(Request $request, Poll $poll)
+    {
+        if(!$poll->published)
+        {
+            $poll->update([
+                'published' => true,
+            ]);
+        }
+        
+        if(!$poll->shortLink)
+        {
+            $poll->shortLink()->create([
+                'code' => \Illuminate\Support\Str::random(3) . mt_rand(10,99) .
+                $request->user()->id . Str::random(3),               
+                'link' => "/poll/show/{$poll->id}",
+            ]);
+        }
+
+        return back();
     }
 }

@@ -10,5 +10,6 @@ Route::get('polls/{poll}/edit', [PollController::class,'edit'])->name('polls.edi
 Route::put('polls/{poll}/edit', [PollController::class,'update'])->name('polls.update');
 Route::post('polls/create',[PollController::class,'store'])->name('polls.store');
 Route::delete('polls/{poll}',[PollController::class,'destroy'])->name('polls.destroy');
+Route::get('polls/publish/{poll}',[PollController::class,'publish'])->name('polls.publish');
 
 Route::get('polls',[PollController::class,'index']);
