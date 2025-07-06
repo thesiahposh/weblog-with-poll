@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PollController;
 use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
@@ -11,6 +12,9 @@ Route::get('/', function () {
 
 //admin
 //Route::view('admin','layouts.admin.main');
+
+//polls
+Route::get('poll/show/{poll}', [PollController::class,'show']);
 
 //blog
 Route::group(['as' => 'blog.'], function ()

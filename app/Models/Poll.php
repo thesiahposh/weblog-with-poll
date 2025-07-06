@@ -24,4 +24,9 @@ class Poll extends Model
     {
         return $this->hasOne(ShortLink::class);
     }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }
