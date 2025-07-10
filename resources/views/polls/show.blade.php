@@ -2,8 +2,9 @@
 
 @section('content1')
 <div class="row">
-    <form method="post" action="">
+    <form method="post" action="{{route('answer')}}">
         @csrf
+        <input type="hidden" name="poll_id" value="{{$poll->id}}">
             <div class="col-8">
                     <div class="card">
                         <div class="card-header background-color-white">
@@ -13,7 +14,7 @@
                             @foreach($poll->questions as $question)
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <input type="{{$poll->type->type}}" name="{{$poll->id}}" value="" id="q-{{$question->id}}">
+                                    <input type="{{$poll->type->type}}" name="q[]" value="{{$question->id}}" id="q-{{$question->id}}">
                                       <label class="form-check-label" for="q-{{$question->id}}">
                                         {{$question->q_body}}
                                       </label>                                   
