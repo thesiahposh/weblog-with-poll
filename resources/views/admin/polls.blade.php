@@ -23,6 +23,7 @@
                                             <th>عنوان</th>
                                             <th>وضعیت</th>
                                             <th>تاریخ انقضا</th>
+                                            <th>لینک</th>
                                             <th>عملیات</th>
                                         </tr>
                                     </thead>
@@ -39,6 +40,7 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">{{jDate($poll->expired_at)->format('Y-m-d')}}</td>
+                                            <td class="text-center">@if($poll->shortLink)<a href="{{env('APP_URL').'poll/'.$poll->shortLink->code}}">لینک</a>@endif</td>
                                             <td class="text-center">
                                                 <a href="{{route('admin.polls.edit', $poll->id)}}"><span class="fas fa-pencil-ruler text-primary"></span></a>
                                                 &nbsp;|&nbsp;
