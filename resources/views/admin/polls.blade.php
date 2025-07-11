@@ -47,6 +47,8 @@
                                                 <a href="#" onclick="event.preventDefault(); deletePoll('{{$poll->id}}');"><span class="fas fa-trash text-danger"></span></a>
                                                 &nbsp;|&nbsp;
                                                 <a href="{{route('admin.polls.publish', $poll->id)}}"><span class="fas fa-eye text-success"></span></a>
+                                                &nbsp;|&nbsp;
+                                                <a href="{{route('poll.result',['poll'=>$poll->id])}}">نتایج</a>
                                                 <form method="POST" action="{{route('admin.polls.destroy', $poll->id)}}" id="delete-{{$poll->id}}">
                                                     @csrf
                                                     @method('DELETE')

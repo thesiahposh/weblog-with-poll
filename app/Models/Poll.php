@@ -29,4 +29,9 @@ class Poll extends Model
     {
         return $this->belongsTo(Type::class);
     }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

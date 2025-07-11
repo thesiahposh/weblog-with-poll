@@ -17,6 +17,7 @@ Route::get('/', function () {
 Route::get('poll/show/{poll}', [PollController::class,'show']);
 Route::post('answer',[App\Http\Controllers\AnswerController::class,'answer'])->name('answer');
 Route::get('/poll/{code}',[App\Http\Controllers\ShortLinkController::class,'getCode']);
+Route::get('/poll/{poll}/result',[App\Http\Controllers\AnswerController::class,'showResult'])->name('poll.result');
 
 //blog
 Route::group(['as' => 'blog.'], function ()

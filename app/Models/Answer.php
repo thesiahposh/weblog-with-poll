@@ -15,6 +15,6 @@ class Answer extends Model
 
     public function question()
     {
-        return $this->belongsTo(Poll::Question);
+        return $this->belongsTo(Question::class);
     }
 }

@@ -19,4 +19,22 @@ class AnswerController extends Controller
         }
         return back();
     }
+
+    public function showResult(Poll $poll)
+    {
+        $count = $poll->answers()->count();
+        $grouped = collect($poll->answers()->with('question')->get())->groupBy('question_id');
+        $array = collect();
+        collect($grouped->all())->map(function($allAnswers) use ($array)
+        {
+            foreach($allAnswers as $answer)
+            {
+                $array->push($answer->question->id);
+            }
+        });
+
+        $result = array_count_values($array->toArray());
+        return view('admin.polls.results',compact('result'));
+
+    }
 }
