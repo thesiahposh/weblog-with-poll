@@ -34,7 +34,7 @@ class AnswerController extends Controller
         });
 
         $result = array_count_values($array->toArray());
-        return view('admin.polls.results',compact('result'));
+        return view('admin.polls.results',compact('result','poll','count'));
 
     }
 }
